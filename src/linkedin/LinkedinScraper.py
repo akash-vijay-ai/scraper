@@ -9,6 +9,7 @@ class LinkedinScraper:
 
 
     def extract_pulse(self):
+
         title = self.parser.xpath("//h1/text()")
         title = ' '.join(title).strip()
 
@@ -33,7 +34,6 @@ class LinkedinScraper:
             "linkedin_url": linkedin_url,
             "bio": bio,
             "content": cleaned_text
-
         }
 
 
