@@ -1,11 +1,34 @@
 from lxml.html import fromstring
 
-
 class LinkedinScraper:
 
     def __init__(self, response_text, url) -> None:
         self.parser = fromstring(response_text)
         self.url = url
+
+
+    def extract_linkedin_blog(self):
+        
+        title = self.parser.xpath("//h1/text()")
+        title = ' '.join(title).strip()
+
+        author_name = self.parser.xpath("//div[contains(@class, 'author-profile')]//a//text()")
+        author_name = ' '.join(author_name).strip()
+        cleaned_author_name = author_name.split("by ")[1]
+
+        bio = self.parser.xpath("//div[contains(@class, 'author-profile')]//p//text()")
+        bio = ' '.join(bio).strip()
+        cleaned_bio = bio.split(" \n")[0]
+
+        content = self.parser.xpath("//div[contains(@class, 'component component-migratedContent')]//text()")
+        content = ' '.join(content).strip()
+
+        return {
+            "title": title,
+            "author": cleaned_author_name,
+            "bio": cleaned_bio,
+            "content": content
+        }
 
 
     def extract_pulse(self):
@@ -15,11 +38,9 @@ class LinkedinScraper:
 
         author_name = self.parser.xpath("//h3[contains(@class, 'base-main-card__title')]/text()")
         author_name = ' '.join(author_name).strip()
-        
 
         linkedin_url = self.parser.xpath("//a[contains(@class, 'base-card__full-link')]/@href")
         linkedin_url = ' '.join(linkedin_url).strip()
-    
         
         bio = self.parser.xpath("//h4[contains(@class, 'base-main-card__subtitle')]/text()")
         bio = ' '.join(bio).strip()
@@ -75,12 +96,12 @@ class LinkedinScraper:
                 "sub_categeory": sub_category
             }
         }
-
+    
 
     def extract_data(self):
 
         if "linkedin.com/blog" in self.url:
-            pass
+            return self.extract_linkedin_blog()
 
         elif "linkedin.com/pulse/" in self.url:
             return self.extract_pulse()
@@ -89,6 +110,9 @@ class LinkedinScraper:
             return self.extract_linkedin_post()
         
         elif "linkedin.com/business/marketing/blog/" in self.url:
+            pass
+
+        elif "linkedin.com/in/" in self.url:
             pass
 
         else:
