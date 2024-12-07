@@ -24,6 +24,35 @@ class LinkedinScraper:
         content = ' '.join(content).strip()
 
         category = self.url.split("/")[-2:-1]
+        category = ', '.join(category).strip()
+
+        return {
+            "title": title,
+            "author": cleaned_author_name,
+            "bio": cleaned_bio,
+            "content": content,
+            "category": category
+        }
+
+
+    def extract_linkedin_business_blog(self):
+        
+        title = self.parser.xpath("//h1/text()")
+        title = ' '.join(title).strip()
+
+        author_name = self.parser.xpath("//div[contains(@class, 'author-profile')]//a//text()")
+        author_name = ' '.join(author_name).strip()
+        cleaned_author_name = author_name.split("by ")[1]
+
+        bio = self.parser.xpath("//div[contains(@class, 'author-profile')]//p//text()")
+        bio = ' '.join(bio).strip()
+        cleaned_bio = bio.split(" \n")[0]
+
+        content = self.parser.xpath("//div[contains(@class, 'global-paragraph-style--reader')]//text()")
+        content = ' '.join(content).strip()
+
+        category = self.url.split("/")[-2:-1]
+        category = ', '.join(category).strip()
        
 
         return {
@@ -33,6 +62,7 @@ class LinkedinScraper:
             "content": content,
             "category": category
         }
+
 
 
     def extract_pulse(self):
@@ -114,7 +144,7 @@ class LinkedinScraper:
             return self.extract_linkedin_post()
         
         elif "linkedin.com/business/marketing/blog/" in self.url:
-            pass
+            return self.extract_linkedin_business_blog()
 
         elif "linkedin.com/in/" in self.url:
             pass
