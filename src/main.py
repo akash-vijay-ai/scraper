@@ -3,7 +3,7 @@ import requests
 from lxml.html import fromstring
 import os
 
-url = "https://www.linkedin.com/posts/poonam-soni-9255931b2_jobpreparation-remotejobs-websites-activity-7270398477816205312-o4ql?utm_source=share&utm_medium=member_desktop"
+url = "https://www.linkedin.com/pulse/20140326191638-235001-how-to-write-your-first-blog-post-on-the-linkedin-publishing-platform/"
 
 response = requests.get(url)
 
