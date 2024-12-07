@@ -4,7 +4,7 @@ import requests
 from lxml.html import fromstring
 import os
 
-url = "https://www.linkedin.com/blog/member/trust-and-safety/new-linkedin-profile-features-help-verify-identity-detect-remove-fake-accounts-boost-authenticity"
+url = "https://www.linkedin.com/blog/member/career/manage-your-day-like-tony-robbins-richard-branson-and-other-productive-people"
 
 response = requests.get(url)
 

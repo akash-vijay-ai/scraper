@@ -23,11 +23,15 @@ class LinkedinScraper:
         content = self.parser.xpath("//div[contains(@class, 'component component-migratedContent')]//text()")
         content = ' '.join(content).strip()
 
+        category = self.url.split("/")[-2:-1]
+       
+
         return {
             "title": title,
             "author": cleaned_author_name,
             "bio": cleaned_bio,
-            "content": content
+            "content": content,
+            "category": category
         }
 
 
