@@ -7,14 +7,13 @@ import os
 
 url = "https://x.com/HenritheWolf/status/1865018852242853974"
 
-response = requests.get(url)
+url_type = identify_url_type(url=url)
 
+response = requests.get(url)
 file_path = define_output_path()
 
 with open(file_path, "wb") as f:
     f.write(response.content)
-
-url_type = identify_url_type(url=url)
 
 if url_type == "linkedin":
     scraper =  LinkedinScraper(response_text=response.content, url=url)
