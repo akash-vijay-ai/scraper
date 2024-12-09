@@ -17,9 +17,11 @@ class XScraper:
     def create_tweet_endpoint(self):
 
         tweet_fields = "tweet.fields=lang,author_id,text,created_at"
+        media_fields = "media.fields=preview_image_url,url"
+
         ids = self.url.split("/")[-1]
         ids = "ids=" + str(ids)
-        api_endpoint = "https://api.twitter.com/2/tweets?{}&{}".format(ids, tweet_fields)
+        api_endpoint = "https://api.twitter.com/2/tweets?{}&{}&expansions=attachments.media_keys&{}".format(ids, tweet_fields,media_fields)
         return api_endpoint
 
 

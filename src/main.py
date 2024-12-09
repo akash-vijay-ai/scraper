@@ -1,11 +1,10 @@
 from linkedin.LinkedinScraper import LinkedinScraper
 from x.XScraper import XScraper
+from youtube.YoutubeScraper import YoutubeScraper
 from utils.utils import define_output_path, identify_url_type
 import requests
-from lxml.html import fromstring
-import os
 
-url = "https://x.com/HenritheWolf/status/1865018852242853974"
+url = "https://www.youtube.com/watch?v=5CmAKm1wWW0"
 
 url_type = identify_url_type(url=url)
 
@@ -20,5 +19,8 @@ if url_type == "linkedin":
 
 elif url_type == "x":
     scraper = XScraper(url=url)
+
+elif url_type == "youtube":
+    scraper = YoutubeScraper(response_text=response.content, url=url)
 
 print(scraper.extract_data())

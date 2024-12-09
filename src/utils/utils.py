@@ -11,6 +11,9 @@ def identify_url_type(url):
 
     elif "https://x.com/" in url:
         return "x"
+    
+    elif "notion.site" in url:
+        return "notion"
 
 
 def define_output_path():
@@ -19,3 +22,4 @@ def define_output_path():
     os.makedirs(response_dir, exist_ok=True)
     file_path = os.path.join(response_dir, "test.html")
     return file_path
+

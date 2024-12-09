@@ -1,3 +1,5 @@
 lxml
 requests
 playwright
+python-dotenv
+yt-dlp
