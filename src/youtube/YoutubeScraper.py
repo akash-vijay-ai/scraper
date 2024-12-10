@@ -24,15 +24,7 @@ class YoutubeScraper:
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                 ydl.download([self.url])
-
-
-    # def download_yt_audio(self):
-    
-    #     yt = YouTube(self.url)
-    #     audio_stream = yt.streams.filter(only_audio=True).first()
-    #     output_path = "./"  # Current directory
-    #     output_file = yt.title + ".mp3"  # Save as an MP3 file
-    #     audio_stream.download(output_path, filename=output_file)
+                
 
     def extract_yotube_video(self):
 

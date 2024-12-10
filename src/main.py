@@ -4,7 +4,7 @@ from youtube.YoutubeScraper import YoutubeScraper
 from utils.utils import define_output_path, identify_url_type
 import requests
 
-url = "https://www.youtube.com/watch?v=5CmAKm1wWW0"
+url = "https://www.youtube.com/watch?v=W7ppd_RY-UE"
 
 url_type = identify_url_type(url=url)
 
